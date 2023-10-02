@@ -1,5 +1,8 @@
 import Express,{Request, Response} from "express"
 import participantsRouter from "./routes/participantsRoutes";
+import { connectDb } from "./config/db";
+
+connectDb()
 
 const app = Express()
 app.use(Express.json())
