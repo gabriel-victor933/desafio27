@@ -37,13 +37,15 @@ model Bet {
   id Int @id() @default(autoincrement())
   createdAt DateTime @default(now())
   updatedAt DateTime @default(now())
-	homeTeamName String
-	awayTeamName String
+	homeTeamScore Int 
+	awayTeamScore Int
   amountBet Int
-  status String
-  amountWon String
+  status String @default("PENDING")
+  amountWon Int?
   game Game  @relation(fields: [gameId],references: [id]) 
   gameId Int
   participant Participant @relation(fields: [participantId],references: [id])
   participantId Int
+
+  @@map("bets")
 }

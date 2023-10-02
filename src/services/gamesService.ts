@@ -1,5 +1,5 @@
 import gamesRepositories from "../repositories/gamesRepositories";
-import { createGame } from "../protocols";
+import { createGame } from "../utils/protocols";
 
 async function PostGame(body: createGame){
     return await gamesRepositories.postGames(body)

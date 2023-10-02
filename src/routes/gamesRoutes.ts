@@ -1,12 +1,13 @@
 import {Router} from 'express'
-import {validateGamesPost} from "../middlewares/gamesMiddleware"
 import { PostGame, getGame } from '../controllers/gamesControllers'
+import { validateBody } from '../middlewares/validateBody'
+import { gameSchema } from '../schemas/gamesSchema'
 
 
 const gamesRouter = Router()
 
 gamesRouter
-    .post("",validateGamesPost,PostGame)
+    .post("",validateBody(gameSchema),PostGame)
     .get("",getGame)
 
 export default gamesRouter

@@ -1,5 +1,5 @@
 import {Request, Response} from "express"
-import { createGame } from "../protocols"
+import { createGame } from "../utils/protocols"
 import gamesServices from "../services/gamesService"
 
 export async function PostGame(req: Request, res: Response){

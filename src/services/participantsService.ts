@@ -1,4 +1,4 @@
-import { createParticipant } from "protocols";
+import { createParticipant } from "../utils/protocols";
 import participantsRepositories from "../repositories/participantsRepositories";
 
 async function postParticipant(body: createParticipant ) {

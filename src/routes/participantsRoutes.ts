@@ -1,9 +1,10 @@
 import {Router, Request, Response} from "express"
 import {postParticipants,getParticipants} from "../controllers/participantsControllers"
-import {validateCreateParticipant} from "../middlewares/participantsMiddleware"
+import { validateBody } from "../middlewares/validateBody"
+import { participantSchema } from "../schemas/ParticipantsSchema"
 
 const participantsRouter = Router()
 participantsRouter
-    .post("",validateCreateParticipant,postParticipants)
+    .post("",validateBody(participantSchema),postParticipants)
     .get("",getParticipants)
 export default participantsRouter

@@ -1,5 +1,5 @@
 import { prisma } from "../config/db";
-import { createGame } from "../protocols";
+import { createGame } from "../utils/protocols";
 
 function postGames(body: createGame){
     return prisma.game.create({

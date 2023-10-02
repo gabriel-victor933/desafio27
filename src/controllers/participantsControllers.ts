@@ -1,5 +1,5 @@
 import {Request, Response} from "express"
-import { createParticipant } from "protocols"
+import { createParticipant } from "../utils/protocols"
 import participantServices from "../services/participantsService"
 
 export async function postParticipants(req: Request, res: Response){

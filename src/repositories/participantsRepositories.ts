@@ -1,4 +1,4 @@
-import { createParticipant } from "protocols";
+import { createParticipant } from "../utils/protocols";
 import { prisma } from "../config/db";
 
 function postParticipant(body: createParticipant){

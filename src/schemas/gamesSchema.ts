@@ -1,5 +1,5 @@
 import Joi from "joi";
-import { createGame } from "../protocols";
+import { createGame } from "../utils/protocols";
 
 export const gameSchema = Joi.object<createGame>({
     homeTeamName: Joi.string().required(),
