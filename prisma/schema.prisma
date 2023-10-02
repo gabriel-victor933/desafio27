@@ -42,9 +42,9 @@ model Bet {
   amountBet Int
   status String @default("PENDING")
   amountWon Int?
-  game Game  @relation(fields: [gameId],references: [id]) 
+  game Game  @relation(fields: [gameId],references: [id],onDelete: Restrict) 
   gameId Int
-  participant Participant @relation(fields: [participantId],references: [id])
+  participant Participant @relation(fields: [participantId],references: [id],onDelete: Restrict)
   participantId Int
 
   @@map("bets")
