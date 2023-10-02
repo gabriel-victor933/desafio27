@@ -1,3 +1,4 @@
+import { notFoundException } from "../utils/errors";
 import gamesRepositories from "../repositories/gamesRepositories";
 import { createGame } from "../utils/protocols";
 
@@ -11,9 +12,17 @@ async function getGame(){
     return games
 }
 
+async function getGameById(id: number) {
+    const game =  await gamesRepositories.getGamesById(id)
+    if(!game) throw notFoundException("Game not found, check the id!")
+
+    return game
+}
+
 const gamesServices = {
     PostGame,
-    getGame
+    getGame,
+    getGameById
 }
 
 export default gamesServices

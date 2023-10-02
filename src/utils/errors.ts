@@ -21,3 +21,11 @@ export function balanceRequired(message?: string){
         message: message || "insufficient funds"
     }
 }
+
+export function invalidRequestException(message?: string){
+    return {
+        type: "application",
+        code: 404,
+        message: message || "Invalid format"
+    }
+}
