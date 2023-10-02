@@ -15,3 +15,8 @@ export type createBet = {
     gameId: number,
     participantId: number
 }
+
+export type finishGame = {
+    homeTeamScore: number,
+    awayTeamScore: number
+}

@@ -6,9 +6,7 @@ import { connectDb } from "./config/db";
 import betsRouter from "./routes/betsRoutes";
 import { handleApplicationErrors } from "./middlewares/errorHandler";
 
-
 connectDb()
-
 const app = Express()
 app.use(Express.json())
 app.get("/health", (req: Request, res: Response) => res.send("ok!"));
