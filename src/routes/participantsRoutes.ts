@@ -4,6 +4,6 @@ import {validateCreateParticipant} from "../middlewares/participantsMiddleware"
 
 const participantsRouter = Router()
 participantsRouter
-    .post("/participants",validateCreateParticipant,postParticipants)
-    .get("/participants",getParticipants)
+    .post("",validateCreateParticipant,postParticipants)
+    .get("",getParticipants)
 export default participantsRouter
