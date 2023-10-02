@@ -5,7 +5,7 @@
   "main": "index.ts",
   "scripts": {
     "dev": "nodemon src/index.ts",
-    "test": "npm run test:load-envs jest --watch --runInBand",
+    "test": "npm run test:load-envs -- jest -- --watch --runInBand",
     "test:load-envs": "dotenv -e .env.test",
     "test:migration:generate": "npm run test:load-envs prisma migrate dev"
   },

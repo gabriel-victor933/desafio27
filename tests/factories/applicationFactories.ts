@@ -1,4 +1,5 @@
 import { faker } from '@faker-js/faker';
+import {prisma} from "../../src/config/db"
 
 export function createParticipant(haveMinBalance = true){
 
@@ -14,4 +15,10 @@ export function createParticipant(haveMinBalance = true){
         balance: faker.number.int({min: 10, max: 1000})
     }
     
+}
+
+export async function insertParticipant(){
+    return await prisma.participant.create({
+        data: createParticipant()
+    })
 }

@@ -1,9 +1,14 @@
 import supertest from 'supertest';
 import app from '../../src/app';
 import httsCodeMap from '../helpers/httpsMaps';
-import { createParticipant } from '../factories/applicationFactories';
+import { createParticipant, insertParticipant } from '../factories/applicationFactories';
+import { cleanUpDb } from '../helpers/cleanUpDb';
 
 const server = supertest(app)
+
+beforeEach(async ()=>{
+    await cleanUpDb()
+})
 
 describe("Participants /POST routes",()=>{
 
@@ -25,5 +30,23 @@ describe("Participants /POST routes",()=>{
 })
 
 describe("Participants /get routes",()=>{
-    
+    it("should return NOT FOUND when there is no participant",async ()=>{
+        const res = await server.get("/participants")
+        expect(res.statusCode).toBe(httsCodeMap.notFound)
+    })
+
+    it("should return array of participants",async ()=>{
+        await insertParticipant()
+        const res = await server.get("/participants")
+        expect(res.statusCode).toBe(httsCodeMap.ok)
+        expect(res.body).toEqual(expect.arrayContaining([
+            expect.objectContaining({
+                id:  expect.any(Number),
+                name:  expect.any(String),
+                balance:  expect.any(Number),
+                createdAt:  expect.any(String),
+                updatedAt:  expect.any(String)
+            })
+        ]))
+    })
 })
