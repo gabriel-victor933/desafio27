@@ -22,3 +22,10 @@ export async function insertParticipant(){
         data: createParticipant()
     })
 }
+
+export function createGame(){
+    return {
+        homeTeamName: faker.company.buzzNoun(),
+        awayTeamName: faker.company.buzzNoun()
+    }
+}
