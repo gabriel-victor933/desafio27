@@ -6,6 +6,7 @@
   "scripts": {
     "build": "tsc",
     "start": "node dist/src/index.js",
+    "deploy": "npx prisma migrate deploy",
     "dev": "nodemon src/index.ts",
     "test": "npm run test:load-envs -- jest -- --watch --runInBand",
     "test:load-envs": "dotenv -e .env.test",

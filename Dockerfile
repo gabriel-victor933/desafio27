@@ -16,6 +16,7 @@ RUN npm i
 
 # faz a compilação do TS para JS
 RUN npm run build
+RUN npm run deploy
 
 # só roda quando darmos docker run
 CMD ["npm", "start"]
