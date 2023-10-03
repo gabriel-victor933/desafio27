@@ -5,7 +5,7 @@
   "main": "index.ts",
   "scripts": {
     "build": "tsc",
-    "start": "prisma migrate deploy node dist/src/index.js",
+    "start": "prisma migrate deploy && node dist/src/index.js",
     "deploy": "prisma migrate deploy",
     "dev": "nodemon src/index.ts",
     "test": "npm run test:load-envs -- jest -- --watch --runInBand",
