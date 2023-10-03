@@ -13,7 +13,6 @@ export async function PostGame(req: Request, res: Response) {
 export async function getGame(req: Request, res: Response) {
     const games = await gamesServices.getGame()
     return res.send(games)
-
 }
 
 export async function getGameById(req: Request, res: Response) {

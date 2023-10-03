@@ -29,3 +29,10 @@ export function createGame(){
         awayTeamName: faker.company.buzzNoun()
     }
 }
+
+export async function insertGame(){
+    return await prisma.game.create({
+        data: createGame()
+    })
+}
+
