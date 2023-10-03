@@ -36,3 +36,19 @@ export async function insertGame(){
     })
 }
 
+export async function insertFinishedGame(){
+    return await prisma.game.create({
+        data: {...createGame(), isFinished: true}
+    })
+}
+
+export  function createBet(gameId: number,participantId: number, amountBet: number){
+    return {
+        gameId,
+        participantId,
+        amountBet,
+        homeTeamScore: faker.number.int({min: 0, max: 5}),
+        awayTeamScore: faker.number.int({min: 0, max: 5})
+    }
+}
+

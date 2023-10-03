@@ -61,9 +61,7 @@ describe("games /GET by id route",()=>{
 
     it("should return a specific game",async ()=>{
         const game = await insertGame()
-        console.log(game)
         const res = await server.get(`/games/${game.id}`)
-        console.log(res.body)
         expect(res.statusCode).toBe(httsCodeMap.ok)
         expect(res.body).toEqual(
             expect.objectContaining({

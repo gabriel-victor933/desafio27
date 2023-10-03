@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">40.9% </span>
+                <span class="strong">68.18% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>9/22</span>
+                <span class='fraction'>15/22</span>
             </div>
         
             
@@ -37,16 +37,16 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">25% </span>
+                <span class="strong">75% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>1/4</span>
+                <span class='fraction'>3/4</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">45% </span>
+                <span class="strong">75% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>9/20</span>
+                <span class='fraction'>15/20</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line medium'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -93,8 +93,7 @@
 <a name='L28'></a><a href='#L28'>28</a>
 <a name='L29'></a><a href='#L29'>29</a>
 <a name='L30'></a><a href='#L30'>30</a>
-<a name='L31'></a><a href='#L31'>31</a>
-<a name='L32'></a><a href='#L32'>32</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L31'></a><a href='#L31'>31</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
@@ -107,16 +106,15 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
@@ -137,17 +135,16 @@ export async function PostGame(req: Request, res: Response) {
 &nbsp;
 }
 &nbsp;
-export async function <span class="fstat-no" title="function not covered" >getGame(</span>req: Request, res: Response) {
-    const games = <span class="cstat-no" title="statement not covered" >await gamesServices.getGame()</span>
-<span class="cstat-no" title="statement not covered" >    return res.send(games)</span>
-&nbsp;
+export async function getGame(req: Request, res: Response) {
+    const games = await gamesServices.getGame()
+    return res.send(games)
 }
 &nbsp;
-export async function <span class="fstat-no" title="function not covered" >getGameById(</span>req: Request, res: Response) {
-    const id = <span class="cstat-no" title="statement not covered" >parseInt(req.params.id)</span>
-<span class="cstat-no" title="statement not covered" >    <span class="missing-if-branch" title="if path not taken" >I</span>if (isNaN(id)) <span class="cstat-no" title="statement not covered" >throw invalidRequestException()</span></span>
-    const game = <span class="cstat-no" title="statement not covered" >await gamesServices.getGameById(id)</span>
-<span class="cstat-no" title="statement not covered" >    return res.send(game)</span>
+export async function getGameById(req: Request, res: Response) {
+    const id = parseInt(req.params.id)
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (isNaN(id)) <span class="cstat-no" title="statement not covered" >throw invalidRequestException()</span>
+    const game = await gamesServices.getGameById(id)
+    return res.send(game)
 }
 &nbsp;
 export async function <span class="fstat-no" title="function not covered" >postFinishGame(</span>req: Request, res: Response) {
@@ -163,7 +160,7 @@ export async function <span class="fstat-no" title="function not covered" >postF
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-10-03T11:53:48.343Z
+                at 2023-10-03T12:33:32.243Z
             </div>
         <script src="../../prettify.js"></script>
         <script>
