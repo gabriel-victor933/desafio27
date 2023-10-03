@@ -42,6 +42,13 @@ export async function insertFinishedGame(){
     })
 }
 
+export function createFinishedGame(){
+    return {
+        homeTeamScore: faker.number.int({min: 0, max: 5}),
+        awayTeamScore: faker.number.int({min: 0, max: 5})
+    }
+}
+
 export  function createBet(gameId: number,participantId: number, amountBet: number){
     return {
         gameId,

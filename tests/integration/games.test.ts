@@ -1,7 +1,7 @@
 import supertest from 'supertest';
 import app from '../../src/app';
 import httsCodeMap from '../helpers/httpsMaps';
-import { createGame, insertGame } from '../factories/applicationFactories';
+import { createFinishedGame, createGame, insertFinishedGame, insertGame } from '../factories/applicationFactories';
 import { cleanUpDb } from '../helpers/cleanUpDb';
 
 const server = supertest(app)
@@ -59,6 +59,12 @@ describe("games /GET by id route",()=>{
         expect(res.statusCode).toBe(httsCodeMap.notFound)
     })
 
+    it("should return BAD REQUEST when url is invalid",async ()=>{
+        const res = await server.get("/games/a")
+
+        expect(res.statusCode).toBe(httsCodeMap.badRequest)
+    })
+
     it("should return a specific game",async ()=>{
         const game = await insertGame()
         const res = await server.get(`/games/${game.id}`)
@@ -76,6 +82,31 @@ describe("games /GET by id route",()=>{
                 bets: expect.any(Array)
             })
         )
+    })
+})
+
+describe("games /POST finished",()=>{
+    it("should return BAD REQUEST when url is invalid",async ()=>{
+        const res = await server.post("/games/a/finish").send(createFinishedGame())
+        expect(res.statusCode).toBe(httsCodeMap.badRequest)
+    })
+
+    it("should return NOT FOUND when games don't exist",async ()=>{
+        const res = await server.post("/games/12/finish").send(createFinishedGame())
+        expect(res.statusCode).toBe(httsCodeMap.notFound)
+    })
+
+    it("should return BAD REQUEST when game is already finished",async ()=>{
+        const game = await insertFinishedGame()
+        const res = await server.post(`/games/${game.id}/finish`).send(createFinishedGame())
+        console.log(res.body)
+        expect(res.statusCode).toBe(httsCodeMap.badRequest)
+    })
+
+    it("should return OK",async ()=>{
+        const game = await insertGame()
+        const res = await server.post(`/games/${game.id}/finish`).send(createFinishedGame())
+        expect(res.statusCode).toBe(httsCodeMap.ok)
     })
 })
 

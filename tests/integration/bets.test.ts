@@ -1,7 +1,7 @@
 import supertest from 'supertest';
 import app from '../../src/app';
 import httsCodeMap from '../helpers/httpsMaps';
-import { createBet, createGame, insertGame, insertParticipant,insertFinishedGame } from '../factories/applicationFactories';
+import { createBet, insertGame, insertParticipant,insertFinishedGame } from '../factories/applicationFactories';
 import { cleanUpDb } from '../helpers/cleanUpDb';
 
 const server = supertest(app)

@@ -25,7 +25,7 @@ export function balanceRequired(message?: string){
 export function invalidRequestException(message?: string){
     return {
         type: "application",
-        code: 404,
+        code: 400,
         message: message || "Invalid format"
     }
 }
