@@ -32,6 +32,8 @@ async function postFinishGame(id: number, body: finishGame){
     let totalWinnerAmount = 0
     const losers:number[] = []
 
+    
+
     bets.forEach((bet) =>{
         totalAmount += bet.amountBet;
         if(bet.homeTeamScore == body.homeTeamScore && bet.awayTeamScore == body.awayTeamScore){
