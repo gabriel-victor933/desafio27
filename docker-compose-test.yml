@@ -2,6 +2,7 @@ services:
   postgres:
     image: postgres
     container_name: postgres
+    restart: always #container reinicia se morrer
     ports:
       - 5433:5432
     env_file:
@@ -15,3 +16,4 @@ services:
       - postgres
     env_file:
       - .env.test
+
