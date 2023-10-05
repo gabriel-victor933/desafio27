@@ -13,7 +13,7 @@ jobs:
           envkey_POSTGRES_PASSWORD: "postgres"
           envkey_POSTGRES_USER: "postgres"
           envkey_POSTGRES_DB: "desafio_test"
-          envkey_DATABASE_URL: "postgres://postgres:postgres@postgres:5433/desafio_test"
+          envkey_DATABASE_URL: "postgres://postgres:postgres@postgres:5432/desafio_test"
           directory: .
           file_name: .env.test
       - name: Run testes
