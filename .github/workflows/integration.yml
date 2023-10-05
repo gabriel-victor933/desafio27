@@ -12,7 +12,7 @@ jobs:
       - name: Make new a .env file
         uses: SpicyPizza/create-envfile@v2.0.2
         with:
-          envkey_DATABASE_URL: "postgres://postgres:postgres@postgres:5432/desafio_test?schema=public"
+          envkey_DATABASE_URL: "postgres://postgres:postgres@postgres:5433/desafio_test?schema=public"
           directory: .
           file_name: .env.test
       - name: Run testes
