@@ -8,5 +8,5 @@ async function postBet(body: createBet){
 const betsServices = {
     postBet
 }
-
+console.log("ok")
 export default betsServices
