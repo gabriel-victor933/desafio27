@@ -1,8 +1,5 @@
 name: Pull Request on GitHub
-on: 
-    push:
-        branches:
-            -main
+on: [pull_request]
 jobs:
   PullRequest-GitHub:
     runs-on: ubuntu-latest
