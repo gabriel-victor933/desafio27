@@ -12,7 +12,7 @@ export function createParticipant(haveMinBalance = true){
 
     return {
         name: faker.person.firstName(),
-        balance: faker.number.int({min: 10, max: 1000})
+        balance: faker.number.int({min: 10, max: 999})
     }
     
 }

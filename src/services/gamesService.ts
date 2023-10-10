@@ -9,8 +9,8 @@ async function PostGame(body: createGame){
     return await gamesRepositories.postGames(body)
 }
 
-async function getGame(){
-    const games = await gamesRepositories.getGames()
+async function getGame(page: number){
+    const games = await gamesRepositories.getGames(page)
     if(games.length === 0) throw notFoundException("Games not found!")
     return games
 }

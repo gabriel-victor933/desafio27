@@ -11,7 +11,9 @@ export async function PostGame(req: Request, res: Response) {
 }
 
 export async function getGame(req: Request, res: Response) {
-    const games = await gamesServices.getGame()
+    const page = parseInt(req.query.page || 1)
+    if (isNaN(page)) throw invalidRequestException("Page must be a number!")
+    const games = await gamesServices.getGame(page)
     return res.send(games)
 }
 
