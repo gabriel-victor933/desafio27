@@ -1,6 +1,6 @@
 import { invalidRequestException } from "../utils/errors";
 import { prisma } from "../config/db";
-import { createGame, finishGame } from "../utils/protocols";
+import { createGame, finishGame,BetsResults } from "../utils/protocols";
 
 function postGames(body: createGame){
     return prisma.game.create({
@@ -19,7 +19,7 @@ function getGamesById(id: number){
     })
 }
 
-function postFinishGame(id: number, body: finishGame,ratio: number,losers: number[], betsResults: BetsResults[]){
+function postFinishGame(id: number, body: finishGame,betsLosted: number[], betsResults: BetsResults[]){
     const querys = []
     querys.push(prisma.game.update({
         where: {id: id},
@@ -31,7 +31,7 @@ function postFinishGame(id: number, body: finishGame,ratio: number,losers: numbe
     }))
 
     querys.push(prisma.bet.updateMany({
-        where: {id: {in: losers}},
+        where: {id: {in: betsLosted}},
         data: {
             status: "LOST",
             amountWon: 0
@@ -44,6 +44,13 @@ function postFinishGame(id: number, body: finishGame,ratio: number,losers: numbe
             data: {
                 amountWon: bet.amountWon,
                 status: "WIN"
+            }
+        }))
+
+        querys.push(prisma.participant.update({
+            where: {id: bet.participantId},
+            data: {
+                balance: {increment: bet.amountWon}
             }
         }))
     })
@@ -60,7 +67,3 @@ const gamesRepositories = {
 
 export default gamesRepositories
 
-type BetsResults = {
-    id: number;
-    amountWon: number;
-}

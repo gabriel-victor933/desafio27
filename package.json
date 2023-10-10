@@ -9,6 +9,7 @@
     "deploy": "prisma migrate deploy",
     "dev": "nodemon src/index.ts",
     "test":"npm run test:load-envs prisma migrate deploy && npm run test:load-envs -- jest -- -i",
+    "test:dev": " npm run test:load-envs -- jest -- --watch --runInBand ",
     "test:load-envs": "dotenv -e .env.test",
     "test:migration:generate": "npm run test:load-envs prisma migrate dev",
     "test:coverage": "npm run test:load-envs --  jest -- --coverage --coverageReporters=json-summary --coverageDirectory=coverage --collectCoverageFrom='**/*.ts' --runInBand"
