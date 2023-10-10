@@ -1,6 +1,6 @@
 import { notFoundException } from "../utils/errors";
 import gamesRepositories from "../repositories/gamesRepositories";
-import { createGame, finishGame } from "../utils/protocols";
+import { createGame, finishGame,BetsResults } from "../utils/protocols";
 import { invalidRequestException } from "../utils/errors";
 
 const TAX = 0.3
@@ -30,31 +30,30 @@ async function postFinishGame(id: number, body: finishGame){
 
     let totalAmount = 0
     let totalWinnerAmount = 0
-    const losers:number[] = []
-
-    
+    const betsLosted:number[] = []
 
     bets.forEach((bet) =>{
         totalAmount += bet.amountBet;
         if(bet.homeTeamScore == body.homeTeamScore && bet.awayTeamScore == body.awayTeamScore){
             totalWinnerAmount += bet.amountBet
         } else {
-            losers.push(bet.id)
+            betsLosted.push(bet.id)
         }
     })
     const ratio = (1 - TAX)*totalAmount/totalWinnerAmount
     
-    const betsResults = []
+    const betsResults: BetsResults[] = []
     bets.forEach((bet) => {
         if(bet.homeTeamScore == body.homeTeamScore && bet.awayTeamScore == body.awayTeamScore){
             betsResults.push({
                 id: bet.id,
-                amountWon: bet.amountBet*ratio
+                amountWon: bet.amountBet*ratio,
+                participantId: bet.participantId
             }) 
         }
     })
 
-    await gamesRepositories.postFinishGame(id,body,ratio,losers,betsResults)
+    await gamesRepositories.postFinishGame(id,body,betsLosted,betsResults)
 }
 
 const gamesServices = {

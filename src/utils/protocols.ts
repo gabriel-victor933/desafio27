@@ -20,3 +20,9 @@ export type finishGame = {
     homeTeamScore: number,
     awayTeamScore: number
 }
+
+export type BetsResults = {
+    id: number;
+    amountWon: number;
+    participantId: number
+}
