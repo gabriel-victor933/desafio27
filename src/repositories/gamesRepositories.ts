@@ -8,8 +8,11 @@ function postGames(body: createGame){
     })
 }
 
-function getGames(){
-    return prisma.game.findMany()
+function getGames(page: number){
+    return prisma.game.findMany({
+        take: 10,
+        skip: 10*(page -1)
+    })
 }
 
 function getGamesById(id: number){
