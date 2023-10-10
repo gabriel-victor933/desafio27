@@ -6,8 +6,8 @@ async function postParticipant(body: createParticipant ) {
      await participantsRepositories.postParticipant(body)
 }
 
-async function getParticipants() {
-    const participants = await participantsRepositories.getParticipants()
+async function getParticipants(page: number) {
+    const participants = await participantsRepositories.getParticipants(page)
     if(participants.length === 0 ) throw notFoundException("Participants not found!")
     return participants
 }   
