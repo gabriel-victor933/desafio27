@@ -6,7 +6,8 @@ import { invalidRequestException } from "../utils/errors";
 const TAX = 0.3
 
 async function PostGame(body: createGame){
-    return await gamesRepositories.postGames(body)
+    const res = await gamesRepositories.postGames(body)
+    return {gameId: res.id}
 }
 
 async function getGame(page: number){
