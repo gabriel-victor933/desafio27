@@ -26,6 +26,9 @@ describe("Participants /POST routes",()=>{
         const res = await server.post("/participants")
         .send(createParticipant())
         expect(res.statusCode).toBe(httsCodeMap.created)
+        expect(res.body).toEqual(expect.objectContaining({
+            participantId: expect.any(Number)
+        }))
     })
 })
 

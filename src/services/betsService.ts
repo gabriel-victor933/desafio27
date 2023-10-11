@@ -2,7 +2,8 @@ import { createBet } from "../utils/protocols";
 import betsRepositories from "../repositories/betsRepositories";
 
 async function postBet(body: createBet){
-    await betsRepositories.postBet(body)
+    const bet = await betsRepositories.postBet(body)
+    return {betId: bet.id}
 }
 
 const betsServices = {

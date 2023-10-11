@@ -19,6 +19,9 @@ describe("games /POST routes",()=>{
     it("should return CREATED if body is valid",async () => {
         const res = await server.post("/games").send(createGame())
         expect(res.statusCode).toBe(httsCodeMap.created)
+        expect(res.body).toEqual(expect.objectContaining({
+            gameId: expect.any(Number)
+        }))
     })
 })
 

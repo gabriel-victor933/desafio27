@@ -5,8 +5,8 @@ import { invalidRequestException } from "../utils/errors"
 
 export async function PostGame(req: Request, res: Response) {
     const body = req.body as createGame
-    await gamesServices.PostGame(body)
-    return res.sendStatus(201)
+    const game = await gamesServices.PostGame(body)
+    return res.status(201).send(game)
 
 }
 

@@ -18,7 +18,7 @@ function postBet(body: createBet){
             data: {balance: participant.balance - body.amountBet}
         })
 
-        await tx.bet.create({
+        return await tx.bet.create({
             data: body
         })
     })
