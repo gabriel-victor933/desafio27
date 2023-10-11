@@ -3,7 +3,8 @@ import participantsRepositories from "../repositories/participantsRepositories";
 import { notFoundException } from "../utils/errors";
 
 async function postParticipant(body: createParticipant ) {
-     await participantsRepositories.postParticipant(body)
+     const res = await participantsRepositories.postParticipant(body)
+     return {participantId: res.id}
 }
 
 async function getParticipants(page: number) {
