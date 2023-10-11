@@ -43,5 +43,8 @@ describe("bets /POST route",()=>{
         const game = await insertGame()
         const res = await server.post("/bets").send(createBet(game.id,participant.id,participant.balance -100))
         expect(res.statusCode).toBe(httsCodeMap.created)
+        expect(res.body).toEqual(expect.objectContaining({
+            betId: expect.any(Number)
+        }))
     })
 })
