@@ -1,5 +1,6 @@
 import Express,{Request, Response} from "express"
 import 'express-async-errors';
+import cors from "cors"
 import participantsRouter from "./routes/participantsRoutes";
 import gamesRouter from "./routes/gamesRoutes";
 import { connectDb } from "./config/db";
@@ -9,6 +10,7 @@ import { handleApplicationErrors } from "./middlewares/errorHandler";
 connectDb()
 const app = Express()
 app.use(Express.json())
+app.use(cors())
 app.get("/health", (req: Request, res: Response) => res.send("ok!"));
 app.use("/participants",participantsRouter)
 app.use("/games",gamesRouter)
