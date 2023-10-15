@@ -35,7 +35,7 @@ async function postFinishGame(id: number, body: finishGame){
 
     bets.forEach((bet) =>{
         totalAmount += bet.amountBet;
-        if(bet.homeTeamScore == body.homeTeamScore && bet.awayTeamScore == body.awayTeamScore){
+        if(checkBet(bet,body)){
             totalWinnerAmount += bet.amountBet
         } else {
             betsLosted.push(bet.id)
@@ -45,7 +45,7 @@ async function postFinishGame(id: number, body: finishGame){
     
     const betsResults: BetsResults[] = []
     bets.forEach((bet) => {
-        if(bet.homeTeamScore == body.homeTeamScore && bet.awayTeamScore == body.awayTeamScore){
+        if(checkBet(bet,body)){
             betsResults.push({
                 id: bet.id,
                 amountWon: bet.amountBet*ratio,
@@ -57,6 +57,10 @@ async function postFinishGame(id: number, body: finishGame){
     await gamesRepositories.postFinishGame(id,body,betsLosted,betsResults)
 }
 
+function checkBet(bet:Bet,gameResult: finishGame){
+    return (bet.homeTeamScore == gameResult.homeTeamScore && bet.awayTeamScore == gameResult.awayTeamScore);
+}
+
 const gamesServices = {
     PostGame,
     getGame,
@@ -65,3 +69,16 @@ const gamesServices = {
 }
 
 export default gamesServices
+
+type Bet =  {
+    id: number;
+    createdAt: Date;
+    updatedAt: Date;
+    homeTeamScore: number;
+    awayTeamScore: number;
+    amountBet: number;
+    status: string;
+    amountWon: number;
+    gameId: number;
+    participantId: number;
+}
