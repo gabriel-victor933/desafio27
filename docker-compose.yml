@@ -7,8 +7,7 @@ services:
       - 5433:5432
     env_file:
       - .env #configurar POSTGRES_USER, POSTGRES_PASSWORD e POSTGRES_DB
-    volumes:
-      - pg:/var/lib/postgresql/data # onde os dados do postgres ficam armazenados no sistema operacional
+
 
   node_app:
     container_name: node_app
@@ -20,5 +19,3 @@ services:
     env_file:
       - .env #configurar DATABASE_URL
 
-volumes:
-  pg: # volume para os postgres

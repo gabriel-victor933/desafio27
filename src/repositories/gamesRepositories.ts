@@ -46,7 +46,7 @@ function postFinishGame(id: number, body: finishGame,betsLosted: number[], betsR
             where: {id: bet.id},
             data: {
                 amountWon: bet.amountWon,
-                status: "WIN"
+                status: "WON"
             }
         }))
 
