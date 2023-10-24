@@ -5,8 +5,10 @@ services:
     restart: always #container reinicia se morrer
     ports:
       - 5433:5432
-    env_file:
-      - .env #configurar POSTGRES_USER, POSTGRES_PASSWORD e POSTGRES_DB
+    enviroment:
+      - POSTGRES_USER: postgres
+      - POSTGRES_PASSWORD: postgres
+      - POSTGRES_DB: postgres 
 
 
   node_app:
@@ -16,6 +18,7 @@ services:
       - 5000:5000
     depends_on:
       - db # só sobe quando o postgres tiver no ar
-    env_file:
-      - .env #configurar DATABASE_URL
+    enviroment::
+      - DATABASE_URL=postgresql://postgres:postgres@db:5432/postgres?schema=public
+
 
